@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>إلى زهرتي.. كل عام وانتِ بخير🥳🥳🥳🥳</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Cairo', sans-serif; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Cairo', sans-serif; overflow: hidden; background: #000; }
         
         .grid-bg { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; height: 100vh; width: 100vw; }
-        .img-cell { width: 100%; height: 100%; overflow: hidden; border: 1px solid #d4af37; }
+        .img-cell { width: 100%; height: 100%; overflow: hidden; border: 1px solid #d4af37; opacity: 0; transition: opacity 1.5s ease-in-out; }
+        .img-cell.show { opacity: 1; }
         .img-cell img { width: 100%; height: 100%; object-fit: cover; }
 
         .center-msg {
@@ -36,10 +37,10 @@
     </audio>
 
     <div class="grid-bg">
-        <div class="img-cell"><img src="https://files.catbox.moe/gf4hvk.jpeg"></div>
-        <div class="img-cell"><img src="https://files.catbox.moe/im6m1x.jpeg"></div>
-        <div class="img-cell"><img src="https://files.catbox.moe/wyliiq.jpeg"></div>
-        <div class="img-cell"><img src="https://files.catbox.moe/im6m1x.jpeg"></div>
+        <div id="img1" class="img-cell"><img src="https://files.catbox.moe/gf4hvk.jpeg"></div>
+        <div id="img2" class="img-cell"><img src="https://files.catbox.moe/im6m1x.jpeg"></div>
+        <div id="img3" class="img-cell"><img src="https://files.catbox.moe/wyliiq.jpeg"></div>
+        <div id="img4" class="img-cell"><img src="https://files.catbox.moe/im6m1x.jpeg"></div>
     </div>
 
     <div class="center-msg">
@@ -70,9 +71,14 @@
     <script>
         function next(n) {
             if(n==2) document.getElementById('bgMusic').play();
+            
+            // إظهار الصورة المقابلة للخطوة
+            document.getElementById('img' + (n-1)).classList.add('show');
+            
+            // التنقل بين النصوص
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.getElementById('step' + n).classList.add('active');
         }
     </script>
 </body>
-</html>center-
+</html>
